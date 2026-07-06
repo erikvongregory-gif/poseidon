@@ -66,6 +66,7 @@ export const WEBDESIGN = {
 
 export const NAV_LINKS = [
   { label: 'Über uns', href: '#ueber-uns' },
+  { label: 'Bewertungen', href: '#bewertungen' },
   { label: 'Spezialitäten', href: '#spezialitaeten' },
   { label: 'Speisekarte', href: '#speisekarte' },
   { label: 'Feiern', href: '#feiern' },
@@ -90,6 +91,7 @@ export const IMAGES = {
   hero: '/images/hero-hq.webp',
   about: '/images/interior.webp',
   events: '/images/interior.webp',
+  mapPreview: '/images/map-preview.webp',
 } as const
 
 export const GREEK_HIGHLIGHTS = [

@@ -1,4 +1,5 @@
 import { SITE } from '@/lib/constants'
+import { GOOGLE_REVIEWS } from '@/lib/google-reviews'
 
 export function RestaurantJsonLd() {
   const schema = {
@@ -15,6 +16,13 @@ export function RestaurantJsonLd() {
       addressLocality: 'Landsberg am Lech',
       postalCode: '86899',
       addressCountry: 'DE',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: GOOGLE_REVIEWS.rating,
+      reviewCount: GOOGLE_REVIEWS.reviewCount,
+      bestRating: 5,
+      worstRating: 1,
     },
     openingHoursSpecification: [
       {
