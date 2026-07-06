@@ -73,12 +73,13 @@ export const PRIVACY_SECTIONS: LegalSection[] = [
     ],
   },
   {
-    id: 'openstreetmap',
-    title: 'OpenStreetMap (Kartendarstellung)',
+    id: 'google-maps',
+    title: 'Google Maps (Kartendarstellung)',
     paragraphs: [
-      'Auf unserer Website können Sie eine Karte laden, die von OpenStreetMap bereitgestellt wird. Die Karte wird erst nach Ihrem aktiven Klick auf „Karte laden" eingebunden. Dabei wird eine Verbindung zu Servern des Anbieters hergestellt und es können personenbezogene Daten (z. B. Ihre IP-Adresse) übermittelt werden.',
-      'Anbieter ist die OpenStreetMap Foundation. Weitere Informationen finden Sie in der Datenschutzerklärung von OpenStreetMap: https://wiki.osmfoundation.org/wiki/Privacy_Policy',
+      'Auf unserer Website können Sie eine Karte laden, die von Google Maps bereitgestellt wird. Die Karte wird erst nach Ihrem aktiven Klick auf „Karte laden" eingebunden. Dabei wird eine Verbindung zu Servern von Google Ireland Limited bzw. Google LLC hergestellt und es können personenbezogene Daten (z. B. Ihre IP-Adresse) übermittelt werden.',
+      'Weitere Informationen finden Sie in der Datenschutzerklärung von Google: https://policies.google.com/privacy',
       'Die Einbindung erfolgt auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO, die Sie durch Klick auf „Karte laden" erteilen.',
+      'Links zu Google Maps und Apple Karten unter der Karte führen direkt zu den jeweiligen Anbietern und setzen keine Einbettung auf unserer Website voraus.',
     ],
   },
   {
@@ -117,7 +118,7 @@ export const COOKIE_CATEGORIES = [
     id: 'external' as const,
     title: 'Externe Medien',
     description:
-      'Ermöglicht das Laden externer Karteninhalte (OpenStreetMap). Daten können an den Anbieter übermittelt werden.',
+      'Ermöglicht das Laden der eingebetteten Google-Maps-Karte. Daten können an Google übermittelt werden.',
     required: false,
   },
 ] as const

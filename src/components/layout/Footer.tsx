@@ -2,11 +2,18 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { openCookieSettings } from '@/components/layout/CookieBanner'
 import { IMAGES, NAV_LINKS, SITE, WEBDESIGN } from '@/lib/constants'
 import { Reveal } from '@/components/ui/Reveal'
 
+function navHref(pathname: string | null, hash: string) {
+  return pathname === '/' ? hash : `/${hash}`
+}
+
 export function Footer() {
+  const pathname = usePathname()
+
   return (
     <footer className="bg-anthracite text-cream">
       <div className="mx-auto max-w-[1400px] px-6 py-20 md:py-24 lg:px-10">
@@ -27,7 +34,7 @@ export function Footer() {
                 {NAV_LINKS.map((link) => (
                   <li key={link.href}>
                     <a
-                      href={link.href}
+                      href={navHref(pathname, link.href)}
                       className="font-sans text-sm text-cream/70 transition-colors hover:text-cream"
                     >
                       {link.label}

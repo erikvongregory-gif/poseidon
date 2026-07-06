@@ -9,8 +9,54 @@ export const SITE = {
     city: '86899 Landsberg am Lech',
     full: 'Hindenburgring 82, 86899 Landsberg am Lech',
   },
-  menuPdf: '/speisekarte.pdf',
+  menuPdf: '/speisekarten/hauptkarte.pdf',
 } as const
+
+const mapQuery = encodeURIComponent(`${SITE.name}, ${SITE.address.full}`)
+
+export const MAP = {
+  embed: `https://maps.google.com/maps?q=${mapQuery}&hl=de&z=16&ie=UTF8&iwloc=&output=embed`,
+  google: `https://www.google.com/maps/search/?api=1&query=${mapQuery}`,
+  apple: `https://maps.apple.com/?q=${encodeURIComponent(SITE.name)}&address=${encodeURIComponent(`${SITE.address.full}, Deutschland`)}`,
+} as const
+
+export const MENU_PDFS = [
+  {
+    label: 'Vorspeisenkarte',
+    href: '/speisekarten/vorspeisenkarte.pdf',
+    description: 'Mezze, Salate, kalte und warme Platten',
+    preview: '/images/menu-previews/menu-preview-vorspeisen.webp',
+    previewAlt: 'Griechische Vorspeisen: Tzatziki, Oliven, Dolmades und Feta',
+  },
+  {
+    label: 'Hauptkarte',
+    href: '/speisekarten/hauptkarte.pdf',
+    description: 'Grill, Fisch und Hauptgerichte',
+    preview: '/images/menu-previews/menu-preview-hauptkarte.webp',
+    previewAlt: 'Souvlaki und Gyros vom Grill mit Beilagen',
+  },
+  {
+    label: 'Speisekarte (Einzelseiten)',
+    href: '/speisekarten/speisekarte-einzelseiten.pdf',
+    description: 'Komplette Karte zum Ausdrucken',
+    preview: '/images/menu-previews/menu-preview-speisekarte.webp',
+    previewAlt: 'Aufgeschlagene Speisekarte auf gedecktem Tisch',
+  },
+  {
+    label: 'Dessertkarte',
+    href: '/speisekarten/dessertkarte.pdf',
+    description: 'Süße Spezialitäten aus Griechenland',
+    preview: '/images/menu-previews/menu-preview-dessert.webp',
+    previewAlt: 'Griechische Desserts: Baklava und Joghurt mit Honig',
+  },
+  {
+    label: 'Weinkarte',
+    href: '/speisekarten/weinkarte.pdf',
+    description: 'Griechische Weine und Getränke',
+    preview: '/images/menu-previews/menu-preview-wein.webp',
+    previewAlt: 'Griechischer Wein mit Trauben und Olivenholz',
+  },
+] as const
 
 export const WEBDESIGN = {
   url: 'https://webdesign.evglab.com',
@@ -19,6 +65,7 @@ export const WEBDESIGN = {
 
 export const NAV_LINKS = [
   { label: 'Über uns', href: '#ueber-uns' },
+  { label: 'Spezialitäten', href: '#spezialitaeten' },
   { label: 'Speisekarte', href: '#speisekarte' },
   { label: 'Feiern', href: '#feiern' },
   { label: 'Öffnungszeiten', href: '#oeffnungszeiten' },
@@ -36,40 +83,62 @@ export const OPENING_HOURS = [
   },
 ] as const
 
-/** Echte Bilder von poseidon-landsberg.de, lokal in /public/images */
+/** Echte Bilder von poseidon-landsberg.de, lokal in /public/images (WebP) */
 export const IMAGES = {
-  logo: '/images/logo.png',
-  hero: '/images/hero-hq.png',
-  about: '/images/interior.jpg',
-  menuBanner: '/images/food-02.jpg',
-  events: '/images/interior.jpg',
+  logo: '/images/logo.webp',
+  hero: '/images/hero-hq.webp',
+  about: '/images/interior.webp',
+  events: '/images/interior.webp',
 } as const
 
-export const MENU_CATEGORIES = [
+export const GREEK_HIGHLIGHTS = [
   {
-    title: 'Vorspeisen',
+    greek: 'Φιλοξενία',
+    title: 'Filoxenia',
     description:
-      'Eine der umfangreichsten Vorspeisenkarten in der Region. Von Tzatziki bis Saganaki, alles hausgemacht.',
-    image: '/images/food-01.jpg',
-    alt: 'Hausgemachtes Saganaki mit frischem Salat im Restaurant POSEIDON',
+      'Herzlicher Service und eine einzigartige Atmosphäre — damit Sie sich bei uns vom ersten Moment an willkommen fühlen.',
+    image: '/images/interior.webp',
+    alt: 'Gastlicher Empfang im Restaurant POSEIDON',
   },
   {
-    title: 'Grillspezialitäten',
-    description: 'Souvlaki, Gyros und Fleisch vom Grill, mariniert nach Familienrezept.',
-    image: '/images/grill-souvlaki.png',
-    alt: 'Souvlaki vom Grill mit Reis und Sauce im Restaurant POSEIDON',
+    greek: 'Μεζέδες',
+    title: 'Mezedes & Vorspeisen',
+    description:
+      'Eine ungewöhnlich umfangreiche Vorspeisenkarte — von Zaziki über Dolmades und Tyrokafteri bis zu kalten und warmen Platten.',
+    image: '/images/menu-previews/menu-preview-vorspeisen.webp',
+    alt: 'Hausgemachte griechische Vorspeisen und Mezze',
   },
   {
-    title: 'Fisch',
-    description: 'Frischer Fisch und Meeresfrüchte, einfach und authentisch zubereitet.',
-    image: '/images/food-02.jpg',
-    alt: 'Gegrillter Oktopus auf mediterranem Salat',
+    greek: 'Σαγανάκι',
+    title: 'Saganaki',
+    description:
+      'Original griechischer Fetakäse, gebacken — auf der Karte in mehreren Varianten, auch mit Honig und Sesam.',
+    image: '/images/food-01.webp',
+    alt: 'Saganaki — gebackener Fetakäse',
   },
   {
-    title: 'Desserts',
-    description: 'Griechischer Joghurt mit Honig, Walnüssen und hausgemachte Süßspeisen.',
-    image: '/images/food-03.jpg',
-    alt: 'Griechischer Joghurt mit Honig und Walnüssen auf Olivenholz',
+    greek: 'Σουβλάκι',
+    title: 'Vom Grill',
+    description:
+      'Souvlaki, Gyros, Lammkoteletts und Bifteki — nach alten Familienrezepten, frisch vom Grill zubereitet.',
+    image: '/images/grill-souvlaki.webp',
+    alt: 'Souvlaki und Gyros vom Grill',
+  },
+  {
+    greek: 'Θάλασσα',
+    title: 'Fisch & Meeresfrüchte',
+    description:
+      'Gegrillter Oktopus, Calamari und Muscheln aus dem Backofen — auf der Vorspeisen- und Hauptkarte zu finden.',
+    image: '/images/food-02.webp',
+    alt: 'Gegrillter Fisch und Meeresfrüchte',
+  },
+  {
+    greek: 'Κρασί',
+    title: 'Weine & Aperitif',
+    description:
+      'Ein erfrischender Aperitif oder ein gutes Glas Wein zum Einstieg — unsere Weinkarte gibt es als PDF.',
+    image: '/images/menu-previews/menu-preview-wein.webp',
+    alt: 'Griechischer Wein und mediterrane Atmosphäre',
   },
 ] as const
 

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
 import { CookieBanner } from '@/components/layout/CookieBanner'
+import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import './globals.css'
 
 const cormorant = Cormorant_Garamond({
@@ -29,6 +30,17 @@ export const metadata: Metadata = {
     title: 'Restaurant POSEIDON | Griechisches Restaurant Landsberg am Lech',
     description:
       'Authentische griechische Familienküche der Familie Papakyritsis. Reservierung unter 08191/21721.',
+    images: [
+      {
+        url: '/images/hero-hq.webp',
+        width: 1920,
+        height: 1080,
+        alt: 'Restaurant POSEIDON in Landsberg am Lech',
+      },
+    ],
+  },
+  icons: {
+    icon: '/favicon.svg',
   },
   robots: {
     index: true,
@@ -40,6 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="de" className={`${cormorant.variable} ${dmSans.variable}`}>
       <body>
+        <ScrollProgress />
         {children}
         <CookieBanner />
       </body>
