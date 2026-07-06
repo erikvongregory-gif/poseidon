@@ -33,10 +33,10 @@ export function OpenStatus({ className = '', variant = 'default' }: OpenStatusPr
   if (variant === 'hero') {
     return (
       <div
-        className={`inline-flex items-center gap-2.5 rounded-full border px-4 py-2 ${className} ${
+        className={`inline-flex items-center gap-2.5 rounded-full border px-4 py-2 backdrop-blur-sm ${className} ${
           status.isOpen
-            ? 'border-emerald-400/30 bg-emerald-950/55'
-            : 'border-cream/15 bg-anthracite/55'
+            ? 'border-emerald-400/30 bg-emerald-950/40'
+            : 'border-cream/15 bg-anthracite/50'
         }`}
         role="status"
         aria-live="polite"

@@ -151,12 +151,7 @@ export function Header() {
             </span>
           </Link>
 
-          <nav
-            className={`hidden items-center gap-10 rounded-full px-2 py-1 lg:flex ${
-              onHero ? '' : 'border border-sand/60 bg-cream/90 shadow-sm backdrop-blur-md'
-            }`}
-            aria-label="Hauptnavigation"
-          >
+          <nav className="hidden items-center gap-10 lg:flex" aria-label="Hauptnavigation">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
