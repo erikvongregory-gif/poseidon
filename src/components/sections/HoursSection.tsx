@@ -1,4 +1,5 @@
 import { OPENING_HOURS, SITE } from '@/lib/constants'
+import { OpenStatus } from '@/components/ui/OpenStatus'
 import { Reveal } from '@/components/ui/Reveal'
 
 export function HoursSection() {
@@ -17,6 +18,9 @@ export function HoursSection() {
             >
               Öffnungszeiten
             </h2>
+            <div className="mt-8 rounded-sm border border-sand bg-cream px-5 py-4">
+              <OpenStatus />
+            </div>
             <p className="mt-6 max-w-sm font-sans text-base leading-relaxed text-anthracite-muted">
               Reservierungen nehmen wir gerne telefonisch entgegen unter{' '}
               <a href={`tel:${SITE.phoneTel}`} className="text-aegean hover:text-aegean-light">

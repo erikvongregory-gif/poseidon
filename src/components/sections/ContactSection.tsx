@@ -3,6 +3,7 @@
 import { Envelope, MapPin, Phone } from '@phosphor-icons/react'
 import { SITE } from '@/lib/constants'
 import { MapPlaceholder } from '@/components/ui/MapPlaceholder'
+import { OpenStatus } from '@/components/ui/OpenStatus'
 import { Reveal } from '@/components/ui/Reveal'
 
 export function ContactSection() {
@@ -16,6 +17,7 @@ export function ContactSection() {
           >
             Kontakt & Anfahrt
           </h2>
+          <OpenStatus compact className="mt-5" />
         </Reveal>
 
         <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr] lg:gap-20">

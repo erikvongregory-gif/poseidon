@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import { IMAGES, SITE } from '@/lib/constants'
 import { ButtonLink } from '@/components/ui/ButtonLink'
+import { OpenStatus } from '@/components/ui/OpenStatus'
 
 export function HeroSection() {
   const ref = useRef<HTMLElement>(null)
@@ -49,6 +50,15 @@ export function HeroSection() {
           >
             Landsberg am Lech
           </motion.p>
+
+          <motion.div
+            className="mb-6"
+            initial={reduce ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <OpenStatus variant="hero" />
+          </motion.div>
 
           <motion.h1
             id="hero-heading"

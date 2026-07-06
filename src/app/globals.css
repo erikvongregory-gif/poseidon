@@ -29,6 +29,10 @@
     @apply bg-cream font-sans text-anthracite antialiased;
   }
 
+  html.mobile-menu-open [data-floating-call] {
+    display: none;
+  }
+
   ::selection {
     @apply bg-aegean/25 text-anthracite;
   }

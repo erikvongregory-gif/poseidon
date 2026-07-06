@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { List, X } from '@phosphor-icons/react'
-import { motion, AnimatePresence } from 'motion/react'
+import { AnimatePresence, motion } from 'motion/react'
 import { IMAGES, NAV_LINKS, SITE } from '@/lib/constants'
 
 export function Header() {
@@ -28,19 +28,38 @@ export function Header() {
   }, [])
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
-    return () => {
-      document.body.style.overflow = ''
+    if (open) {
+      document.documentElement.classList.add('mobile-menu-open')
+    } else {
+      document.documentElement.classList.remove('mobile-menu-open')
     }
+    return () => document.documentElement.classList.remove('mobile-menu-open')
   }, [open])
 
   useEffect(() => {
     if (!open) return
+
+    const scrollY = window.scrollY
+    document.body.style.position = 'fixed'
+    document.body.style.top = `-${scrollY}px`
+    document.body.style.left = '0'
+    document.body.style.right = '0'
+    document.body.style.overflow = 'hidden'
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setOpen(false)
     }
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+
+    return () => {
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.left = ''
+      document.body.style.right = ''
+      document.body.style.overflow = ''
+      window.scrollTo(0, scrollY)
+      window.removeEventListener('keydown', onKey)
+    }
   }, [open])
 
   const onHero = isHome && !scrolled && !open
@@ -50,25 +69,20 @@ export function Header() {
     createPortal(
       <AnimatePresence>
         {open && (
-          <>
-            <motion.button
-              type="button"
-              aria-label="Menü schließen"
-              className="fixed inset-0 z-[55] bg-anthracite/50 backdrop-blur-[2px] lg:hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              onClick={() => setOpen(false)}
-            />
-            <motion.nav
-              id="mobile-nav"
-              className="fixed inset-x-0 top-16 bottom-0 z-[56] flex flex-col overflow-y-auto bg-anthracite px-6 py-8 lg:hidden"
+          <motion.div
+            id="mobile-nav"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation"
+            className="fixed inset-0 z-[200] flex flex-col bg-anthracite lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <nav
+              className="flex flex-1 flex-col overflow-y-auto overscroll-contain px-6 pb-10 pt-20"
               aria-label="Mobile Navigation"
-              initial={{ opacity: 0, y: -12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
               {NAV_LINKS.map((link, i) => (
                 <motion.a
@@ -76,9 +90,9 @@ export function Header() {
                   href={isHome ? link.href : `/${link.href}`}
                   onClick={() => setOpen(false)}
                   className="border-b border-cream/10 py-5 font-serif text-3xl text-cream"
-                  initial={{ opacity: 0, x: -8 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 + i * 0.04, duration: 0.3 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.04 + i * 0.035, duration: 0.28 }}
                 >
                   {link.label}
                 </motion.a>
@@ -87,27 +101,21 @@ export function Header() {
                 href={`tel:${SITE.phoneTel}`}
                 onClick={() => setOpen(false)}
                 className="mt-8 bg-aegean py-4 text-center font-sans text-sm font-medium tracking-wide text-cream"
-                initial={{ opacity: 0, y: 8 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.3 }}
+                transition={{ delay: 0.28, duration: 0.28 }}
               >
                 Tisch reservieren
               </motion.a>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.35, duration: 0.3 }}
+              <Link
+                href="/impressum-datenschutz"
+                onClick={() => setOpen(false)}
+                className="mt-6 block text-center font-sans text-sm text-cream/50"
               >
-                <Link
-                  href="/impressum-datenschutz"
-                  onClick={() => setOpen(false)}
-                  className="mt-6 block text-center font-sans text-sm text-cream/50"
-                >
-                  Impressum & Datenschutz
-                </Link>
-              </motion.div>
-            </motion.nav>
-          </>
+                Impressum & Datenschutz
+              </Link>
+            </nav>
+          </motion.div>
         )}
       </AnimatePresence>,
       document.body,
@@ -116,12 +124,12 @@ export function Header() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-[57] transition-all duration-500 ${
+        className={`fixed inset-x-0 top-0 z-[201] transition-all duration-500 ${
           open
-            ? 'border-b border-cream/10 bg-anthracite py-0'
+            ? 'border-b border-cream/10 bg-anthracite'
             : onHero
               ? 'bg-gradient-to-b from-anthracite/50 to-transparent py-1'
-              : 'border-b border-sand/60 bg-cream/95 py-0 backdrop-blur-md'
+              : 'border-b border-sand/60 bg-cream/95 backdrop-blur-md'
         }`}
       >
         <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6 md:h-[68px] lg:px-10">
@@ -167,7 +175,7 @@ export function Header() {
 
           <button
             type="button"
-            className={`flex h-10 w-10 items-center justify-center lg:hidden ${
+            className={`relative z-[202] flex h-10 w-10 items-center justify-center lg:hidden ${
               onHero || open ? 'text-cream' : 'text-anthracite'
             }`}
             onClick={() => setOpen((v) => !v)}
