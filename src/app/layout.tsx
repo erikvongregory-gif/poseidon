@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
 import { CookieBanner } from '@/components/layout/CookieBanner'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
+import { SITE } from '@/lib/constants'
 import './globals.css'
 
 const cormorant = Cormorant_Garamond({
@@ -20,24 +21,33 @@ export const metadata: Metadata = {
   title: 'Griechisches Restaurant Landsberg am Lech | Restaurant POSEIDON',
   description:
     'Restaurant POSEIDON in Landsberg am Lech: Authentische griechische Familienküche nach alten Rezepten, herzlicher Service und Feste für jeden Anlass. Jetzt Tisch reservieren.',
-  metadataBase: new URL('https://poseidon-landsberg.de'),
+  metadataBase: new URL(SITE.url),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'de_DE',
+    url: SITE.url,
+    siteName: SITE.name,
     title: 'Restaurant POSEIDON | Griechisches Restaurant Landsberg am Lech',
     description:
       'Authentische griechische Familienküche der Familie Papakyritsis. Reservierung unter 08191/21721.',
     images: [
       {
-        url: '/images/hero-hq.webp',
-        width: 1920,
-        height: 1080,
-        alt: 'Restaurant POSEIDON in Landsberg am Lech',
+        url: '/images/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Restaurant POSEIDON — Griechisches Familienrestaurant in Landsberg am Lech',
       },
     ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Restaurant POSEIDON | Landsberg am Lech',
+    description:
+      'Authentische griechische Familienküche der Familie Papakyritsis. Jetzt Tisch reservieren.',
+    images: ['/images/og-image.jpg'],
   },
   icons: {
     icon: '/favicon.svg',

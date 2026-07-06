@@ -1,4 +1,4 @@
-import { IMAGES, SITE } from '@/lib/constants'
+import { SITE } from '@/lib/constants'
 
 export function RestaurantJsonLd() {
   const schema = {
@@ -36,8 +36,8 @@ export function RestaurantJsonLd() {
         closes: '23:00',
       },
     ],
-    url: 'https://poseidon-landsberg.de',
-    image: `https://poseidon-landsberg.de${IMAGES.hero}`,
+    url: SITE.url,
+    image: `${SITE.url}/images/og-image.jpg`,
     priceRange: '€€',
   }
 

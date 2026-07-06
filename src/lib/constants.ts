@@ -1,6 +1,7 @@
 export const SITE = {
   name: 'Restaurant POSEIDON',
   tagline: 'Authentische griechische Familienküche in Landsberg am Lech',
+  url: 'https://poseidon-ruby.vercel.app',
   phone: '08191/21721',
   phoneTel: '+49819121721',
   email: 'info@poseidon-landsberg.de',
