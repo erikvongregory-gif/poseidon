@@ -17,7 +17,7 @@ export function ContactSection() {
           >
             Kontakt & Anfahrt
           </h2>
-          <OpenStatus compact className="mt-5" />
+          <OpenStatus variant="compact" className="mt-5" />
         </Reveal>
 
         <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
