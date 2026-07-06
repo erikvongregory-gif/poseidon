@@ -11,7 +11,7 @@ export function ScrollProgress() {
 
   return (
     <motion.div
-      className="fixed inset-x-0 top-0 z-[70] h-[2px] origin-left bg-terracotta-light"
+      className="fixed inset-x-0 top-0 z-[70] h-[2px] origin-left bg-gradient-to-r from-aegean via-aegean-light to-terracotta-light"
       style={{ scaleX }}
       aria-hidden
     />

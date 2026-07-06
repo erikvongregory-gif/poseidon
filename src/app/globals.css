@@ -79,5 +79,72 @@
     .film-grain {
       display: none;
     }
+
+    .poseidon-shimmer,
+    .poseidon-trident,
+    .animate-section-wave {
+      animation: none;
+    }
+  }
+}
+
+@keyframes poseidon-shimmer {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translate3d(-3%, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translate3d(3%, -1.5%, 0) scale(1.03);
+  }
+}
+
+@keyframes poseidon-trident-drift {
+  0%,
+  100% {
+    opacity: 0.06;
+    transform: translateY(-50%) rotate(-2deg);
+  }
+  50% {
+    opacity: 0.1;
+    transform: translateY(calc(-50% - 10px)) rotate(1deg);
+  }
+}
+
+@keyframes section-wave-swell {
+  0%,
+  100% {
+    transform: translateY(0) scaleY(1);
+  }
+  50% {
+    transform: translateY(3px) scaleY(1.06);
+  }
+}
+
+@layer utilities {
+  .poseidon-shimmer {
+    mix-blend-mode: soft-light;
+    background:
+      radial-gradient(
+        ellipse 70% 45% at 72% 58%,
+        color-mix(in srgb, var(--color-aegean-light) 55%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 55% 35% at 28% 78%,
+        color-mix(in srgb, var(--color-aegean) 35%, transparent),
+        transparent 65%
+      );
+    animation: poseidon-shimmer 14s ease-in-out infinite;
+  }
+
+  .poseidon-trident {
+    animation: poseidon-trident-drift 18s ease-in-out infinite;
+  }
+
+  .animate-section-wave {
+    animation: section-wave-swell 7s ease-in-out infinite;
+    transform-origin: center bottom;
   }
 }

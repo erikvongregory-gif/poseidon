@@ -6,6 +6,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import { IMAGES, SITE } from '@/lib/constants'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import { OpenStatus } from '@/components/ui/OpenStatus'
+import { PoseidonAmbience } from '@/components/ui/PoseidonAmbience'
 
 export function HeroSection() {
   const ref = useRef<HTMLElement>(null)
@@ -35,6 +36,7 @@ export function HeroSection() {
 
       <div className="absolute inset-0 bg-gradient-to-r from-anthracite/90 via-anthracite/55 to-anthracite/15" />
       <div className="absolute inset-0 bg-gradient-to-t from-anthracite/50 via-transparent to-anthracite/25" />
+      <PoseidonAmbience />
       <div className="film-grain pointer-events-none absolute inset-0" aria-hidden />
 
       <motion.div

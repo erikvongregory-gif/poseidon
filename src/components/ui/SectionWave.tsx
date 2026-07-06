@@ -10,7 +10,7 @@ export function SectionWave({ fill = 'var(--color-cream)', className = '' }: Sec
       <svg
         viewBox="0 0 1440 48"
         preserveAspectRatio="none"
-        className="block h-8 w-full md:h-12"
+        className="animate-section-wave block h-8 w-full md:h-12"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
